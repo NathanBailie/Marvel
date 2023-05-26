@@ -1,5 +1,6 @@
 <script>
 import "./randomCharacter.scss";
+import "../../buttons/buttons.scss";
 export default {
   name: "RandomCharacter",
 };
@@ -23,8 +24,8 @@ export default {
           voluptate, velit ullam fuga!
         </p>
         <div class="rndChar__buttons">
-          <button class="rndChar__homePage">homepage</button>
-          <button class="rndChar__wiki">wiki</button>
+          <button class="buttons red">homepage</button>
+          <button class="buttons gray">wiki</button>
         </div>
       </div>
     </div>
@@ -33,7 +34,7 @@ export default {
       <p>Random character for today!</p>
       <p>Do you want to get to know him better?</p>
       <p>Or choose another one</p>
-      <button>try it</button>
+      <button class="buttons red">try it</button>
       <img src="../../resources/img/bg/decor.png" alt="decor" />
     </div>
   </div>
