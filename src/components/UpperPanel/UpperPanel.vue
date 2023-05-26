@@ -1,7 +1,7 @@
 <script>
 import "./upperPanel.scss";
 export default {
-  // name: "UpperPanel",
+  name: "UpperPanel",
 };
 </script>
 

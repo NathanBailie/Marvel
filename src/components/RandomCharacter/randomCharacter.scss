@@ -1,0 +1,86 @@
+.rndChar {
+  width: 550px;
+  height: 250px;
+  display: flex;
+  justify-content: space-between;
+  padding: 35px;
+
+  &__img {
+    width: 180px;
+    height: 180px;
+    background: gray;
+    margin-right: 30px;
+  }
+
+  &__info {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+
+    h2 {
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 26px;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+      width: 265px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    p {
+      width: 265px;
+      height: 90px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      margin-bottom: 13px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__homePage,
+  &__wiki {
+    width: 100px;
+    height: 38px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    border: none;
+    position: relative;
+    clip-path: polygon(0% 30%, 12% 0%, 100% 0%, 100% 70%, 88% 100%, 0% 100%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-4px) scale(1.02);
+      font-weight: bold;
+    }
+  }
+
+  &__homePage {
+    background: #9F0013;
+    margin-right: 30px;
+  }
+
+  &__wiki {
+    background: #5C5C5C;
+
+  }
+}
