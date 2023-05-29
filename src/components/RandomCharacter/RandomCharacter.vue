@@ -3,6 +3,7 @@ import "./randomCharacter.scss";
 import "../../buttons/buttons.scss";
 import MarvelService from "../MarvelService/MarvelService";
 import Spinner from "../Spinner/Spinner.vue";
+import Error from "../Error/Error.vue";
 
 export default {
   name: "RandomCharacter",
@@ -17,6 +18,7 @@ export default {
   },
   components: {
     Spinner,
+    Error,
   },
 
   methods: {
@@ -40,7 +42,7 @@ export default {
     },
   },
   mounted() {
-    // this.getData();
+    this.getData();
   },
 };
 </script>
@@ -82,6 +84,6 @@ export default {
     </div>
 
     <Spinner v-if="loading" />
-    <p v-if="error">Error...</p>
+    <Error v-if="error" />
   </div>
 </template>
