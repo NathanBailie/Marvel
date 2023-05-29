@@ -30,12 +30,10 @@ export default class MarvelService {
       id: data.id,
       name: data.name,
       descr: data.description.length === 0 ? 'There is no description for this character' : data.description,
-      image: `${data.thumbnail.path}.${data.thumbnail.extention}`,
+      image: `${data.thumbnail.path}.${data.thumbnail.extension}`,
       comics: data.comics.items,
       homepage: data.urls[0].url,
       wiki: data.urls[1].url,
     };
   };
-
-
 }
