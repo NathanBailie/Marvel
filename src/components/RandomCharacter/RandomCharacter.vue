@@ -2,6 +2,7 @@
 import "./randomCharacter.scss";
 import "../../buttons/buttons.scss";
 import MarvelService from "../MarvelService/MarvelService";
+import Spinner from "../Spinner/Spinner.vue";
 
 export default {
   name: "RandomCharacter",
@@ -13,6 +14,9 @@ export default {
       char: {},
       objectFit: "cover",
     };
+  },
+  components: {
+    Spinner,
   },
 
   methods: {
@@ -36,7 +40,7 @@ export default {
     },
   },
   mounted() {
-    this.getData();
+    // this.getData();
   },
 };
 </script>
@@ -77,8 +81,7 @@ export default {
       <img src="../../resources/img/bg/decor.png" alt="decor" />
     </div>
 
-    <!-- <p v-if="loading">{{ spinner }}</p> -->
-    <p v-if="loading">Loading...</p>
+    <Spinner v-if="loading" />
     <p v-if="error">Error...</p>
   </div>
 </template>
