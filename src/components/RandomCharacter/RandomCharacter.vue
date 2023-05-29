@@ -1,8 +1,20 @@
 <script>
 import "./randomCharacter.scss";
 import "../../buttons/buttons.scss";
+import MarvelService from "../MarvelService/MarvelService";
+
 export default {
   name: "RandomCharacter",
+  loading: true,
+  error: false,
+  char: {},
+  methods: {
+    getData: () => {
+      new MarvelService().getRandomChar().then((res) => {
+        this.char = res;
+      });
+    },
+  },
 };
 </script>
 
@@ -11,17 +23,9 @@ export default {
     <div class="rndChar">
       <div class="rndChar__img"></div>
       <div class="rndChar__info">
-        <h2>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime
-          delectus nihil cupiditate? Aperiam eligendi minus dolores natus! Sed
-          iure sequi ex ab, deleniti odio perferendis earum nobis, incidunt
-          praesentium dignissimos.
-        </h2>
+        <h2>{{ this.char.name }}</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-          rerum optio laboriosam eum cumque exercitationem! Impedit dolorem,
-          minus provident quos ab nisi, dignissimos labore modi obcaecati
-          voluptate, velit ullam fuga!
+          {{ this.char.descr }}
         </p>
         <div class="rndChar__buttons">
           <button class="buttons red">homepage</button>
@@ -34,7 +38,7 @@ export default {
       <p>Random character for today!</p>
       <p>Do you want to get to know him better?</p>
       <p>Or choose another one</p>
-      <button class="buttons red">try it</button>
+      <button class="buttons red" @click="getData">try it</button>
       <img src="../../resources/img/bg/decor.png" alt="decor" />
     </div>
   </div>
