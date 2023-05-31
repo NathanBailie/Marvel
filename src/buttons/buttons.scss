@@ -19,6 +19,10 @@
   &:hover {
     transform: translateY(-4px) scale(1.02);
     font-weight: bold;
+
+    &:active {
+      transform: translateY(-4px) scale(0.95);
+    }
   }
 
   a {
