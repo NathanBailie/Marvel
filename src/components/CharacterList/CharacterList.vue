@@ -7,6 +7,7 @@ import Error from "../Error/Error.vue";
 
 export default {
   name: "CharacterList",
+  emits: ["choseCharacter"],
   data() {
     return {
       characters: [],
@@ -49,6 +50,16 @@ export default {
           elem.isActive = !elem.isActive;
         }
       });
+
+      let activeChar = {};
+
+      this.characters.forEach((elem) => {
+        if (elem.isActive) {
+          activeChar = elem;
+        }
+      });
+
+      this.$emit("choseCharacter", activeChar);
     },
     toLoadAdditionalCharacters: function () {
       this.offset += this.characters.length;
