@@ -1,9 +1,12 @@
 <script>
 import "../../buttons/buttons.scss";
 import "./characterInfo.scss";
+import Skeleton from "../Skeleton/Skeleton.vue";
+
 export default {
   name: "CharacterInfo",
   props: ["chosenCharacter"],
+  components: { Skeleton },
   data() {
     return {};
   },
@@ -52,4 +55,5 @@ export default {
     </ul>
     <!-- <button @click="log">Log</button> -->
   </div>
+  <Skeleton v-if="Object.keys(this.chosenCharacter).length === 0" />
 </template>
