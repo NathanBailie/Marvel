@@ -27,7 +27,6 @@ export default {
     },
     toSaveTheFoundHero: function (char) {
       this.foundHero = char;
-      console.log(char);
     },
   },
 };

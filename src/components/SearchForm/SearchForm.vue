@@ -53,7 +53,12 @@ export default {
   <div class="searchForm">
     <h2>Or find a character by name:</h2>
     <div class="searchForm__wraper">
-      <input type="text" placeholder="Enter name" v-model="heroName" />
+      <input
+        type="text"
+        placeholder="Enter name"
+        v-model="heroName"
+        @keyup.enter="toGetTheHero"
+      />
       <button class="buttons red" @click="toGetTheHero">
         {{ loading ? "loading..." : "find" }}
       </button>
