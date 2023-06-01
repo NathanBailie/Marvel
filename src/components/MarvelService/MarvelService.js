@@ -19,7 +19,7 @@ export default class MarvelService {
     };
   };
 
-  getRandomChar = async (url) => {
+  getRandomChar = async () => {
     const id = getRandomNum(1011000, 1011400);
     const res = await this.getResource(`${this._apiBase}characters/${id}?${this._apiKey}`);
     return this._toConvertTheData(res.data.results[0]);
@@ -28,6 +28,11 @@ export default class MarvelService {
   getAllCharacters = async (offset) => {
     const res = await this.getResource(`${this._apiBase}characters?limit=9&offset=${offset}&${this._apiKey}`);
     return res.data.results.map((elem) => this._toConvertTheData(elem));
+  };
+
+  getCharacterByName = async (name) => {
+    const res = await this.getResource(`${this._apiBase}characters?name=${name}&${this._apiKey}`);
+    return this._toConvertTheData(res.data.results[0]);
   };
 
   _toConvertTheData = (data) => {

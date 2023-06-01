@@ -19,6 +19,7 @@
     img {
       width: 100%;
       height: 100%;
+      user-select: none;
     }
   }
 
@@ -96,6 +97,7 @@
     position: absolute;
     top: 40px;
     left: 380px;
+    user-select: none;
   }
 }
 
