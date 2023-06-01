@@ -4,6 +4,7 @@ import RandomCharacter from "../RandomCharacter/RandomCharacter.vue";
 import CharacterList from "../CharacterList/CharacterList.vue";
 import CharacterInfo from "../CharacterInfo/CharacterInfo.vue";
 import SearchForm from "../SearchForm/SearchForm.vue";
+import ComicsList from "../ComicsList/ComicsList.vue";
 import "./app.scss";
 import "../../resources/fonts/fonts.scss";
 
@@ -14,6 +15,7 @@ export default {
     CharacterList,
     CharacterInfo,
     SearchForm,
+    ComicsList,
   },
   data() {
     return {
@@ -35,13 +37,14 @@ export default {
 <template>
   <div class="container">
     <UpperPanel />
-    <RandomCharacter />
+    <!-- <RandomCharacter />
     <div class="mainWraper">
       <CharacterList @choseCharacter="choseCharacter" />
       <div class="subWraper">
         <CharacterInfo :chosenCharacter="chosenCharacter" />
         <SearchForm :toSaveTheFoundHero="toSaveTheFoundHero" />
       </div>
-    </div>
+    </div> -->
+    <ComicsList />
   </div>
 </template>

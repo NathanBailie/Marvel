@@ -1,16 +1,20 @@
 <script>
 import "../../buttons/buttons.scss";
-import "./characterList.scss";
+import "./comicsList.scss";
 import MarvelService from "../MarvelService/MarvelService";
 import Spinner from "../Spinner/Spinner.vue";
 import Error from "../Error/Error.vue";
 
 export default {
-  name: "CharacterList",
-  emits: ["choseCharacter"],
+  name: "ComicsList",
+  components: {
+    Spinner,
+    Error,
+  },
+
   data() {
     return {
-      characters: [],
+      comics: [],
       offset: 0,
       startLoading: true,
       startError: false,
@@ -19,19 +23,13 @@ export default {
       additionalError: false,
     };
   },
-  components: {
-    Spinner,
-    Error,
-  },
   methods: {
-    getCharacters() {
-      this.offset += this.characters.length;
-
+    getComics() {
+      this.offset += this.comics.length;
       new MarvelService()
-        .getAllCharacters(this.offset)
+        .getAllComics(this.offset)
         .then((res) => {
-          this.characters = res;
-          this.characters.map((elem) => (elem.isActive = false));
+          this.comics = res;
           this.startLoading = false;
           this.startError = false;
           this.showContent = true;
@@ -42,33 +40,14 @@ export default {
           this.startError = true;
         });
     },
-    toggleActive: function (id) {
-      this.characters.map((elem) => {
-        if (elem.id !== id) {
-          elem.isActive = false;
-        } else {
-          elem.isActive = !elem.isActive;
-        }
-      });
-
-      let activeChar = {};
-
-      this.characters.forEach((elem) => {
-        if (elem.isActive) {
-          activeChar = elem;
-        }
-      });
-
-      this.$emit("choseCharacter", activeChar);
-    },
-    toLoadAdditionalCharacters: function () {
-      this.offset += this.characters.length;
+    toLoadAdditionalComics: function () {
+      this.offset += this.comics.length;
       this.additionalLoading = true;
 
       new MarvelService()
-        .getAllCharacters(this.offset)
+        .getAllComics(this.offset)
         .then((res) => {
-          this.characters.push(...res);
+          this.comics.push(...res);
           this.additionalLoading = false;
           this.additionalError = false;
         })
@@ -79,26 +58,27 @@ export default {
     },
   },
   mounted() {
-    this.getCharacters();
+    this.getComics();
   },
 };
 </script>
 
 <template>
-  <div class="characterListWraper">
-    <div class="characterList" v-if="showContent">
+  <div class="comicsList">
+    <div class="comicsList__announcement">
+      <img src="../../resources/icons/avengers.png" alt="avengers" />
+      <h1>New comics every week! Stay tuned!</h1>
+      <img src="../../resources/icons/logo.png" alt="logo" />
+    </div>
+
+    <div class="comicsList__comics" v-if="showContent">
       <div
-        v-for="char in characters"
-        :key="char.id"
-        :class="
-          char.isActive
-            ? 'characterList__char characterList__char_active'
-            : 'characterList__char'
-        "
-        @click="toggleActive(char.id)"
+        v-for="comicBook in comics"
+        :key="comicBook.id"
+        class="comicsList__comicBook"
       >
-        <img :src="char.image" alt="character" />
-        <h2>{{ char.name }}</h2>
+        <img :src="comicBook.image" alt="comicBook" />
+        <h2>{{ comicBook.title }}</h2>
       </div>
     </div>
 
@@ -106,9 +86,9 @@ export default {
     <Error v-if="startError" />
 
     <button
-      v-if="characters.length < 1562"
+      v-if="comics.length < 55763"
       class="buttons red"
-      @click="toLoadAdditionalCharacters"
+      @click="toLoadAdditionalComics"
     >
       {{ this.additionalLoading ? "Loading..." : null }}
       {{ this.additionalError ? "Reload" : null }}

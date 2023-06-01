@@ -22,28 +22,44 @@ export default class MarvelService {
   getRandomChar = async () => {
     const id = getRandomNum(1011000, 1011400);
     const res = await this.getResource(`${this._apiBase}characters/${id}?${this._apiKey}`);
-    return this._toConvertTheData(res.data.results[0]);
+    return this._toConvertTheHeroData(res.data.results[0]);
   };
 
   getAllCharacters = async (offset) => {
     const res = await this.getResource(`${this._apiBase}characters?limit=9&offset=${offset}&${this._apiKey}`);
-    return res.data.results.map((elem) => this._toConvertTheData(elem));
+    return res.data.results.map((elem) => this._toConvertTheHeroData(elem));
   };
 
   getCharacterByName = async (name) => {
     const res = await this.getResource(`${this._apiBase}characters?name=${name}&${this._apiKey}`);
-    return this._toConvertTheData(res.data.results[0]);
+    return this._toConvertTheHeroData(res.data.results[0]);
   };
 
-  _toConvertTheData = (data) => {
+  getAllComics = async (offset) => {
+    const res = await this.getResource(`${this._apiBase}comics?limit=8&offset=${offset}&${this._apiKey}`);
+    return res.data.results.map((elem) => this._toConvertTheComicsData(elem));
+  };
+
+  _toConvertTheHeroData = (data) => {
     return {
       id: data.id,
       name: data.name,
-      descr: data.description.length === 0 ? 'There is no description for this character' : data.description,
+      descr: data.description === null || data.description.length === 0 ? 'There is no description for this character' : data.description,
       image: `${data.thumbnail.path}.${data.thumbnail.extension}`,
       comics: data.comics.items,
       homepage: data.urls[0].url,
       wiki: data.urls[1].url,
+    };
+  };
+
+  _toConvertTheComicsData = (data) => {
+    return {
+      id: data.id,
+      title: data.title,
+      descr: data.description === null || data.description.length === 0 ? 'There is no description for this comic book' : data.description,
+      pages: data.pageCount,
+      image: `${data.thumbnail.path}.${data.thumbnail.extension}`,
+      url: data.urls[0].url,
     };
   };
 }

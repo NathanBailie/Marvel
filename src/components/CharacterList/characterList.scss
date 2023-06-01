@@ -13,6 +13,7 @@
   width: 100%;
   display: grid;
   grid-template: repeat(auto-fit, 318px) / repeat(auto-fit, 200px);
+  justify-content: center;
   gap: 25px;
   margin-bottom: 45px;
 
@@ -55,6 +56,4 @@
     color: #FFFFFF;
     text-align: center;
   }
-
-
 }
