@@ -1,0 +1,11 @@
+.characterListContainer {
+
+  &__mainWraper {
+    display: flex;
+  }
+
+  &__subWraper {
+    display: flex;
+    flex-direction: column;
+  }
+}

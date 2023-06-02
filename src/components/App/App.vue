@@ -1,35 +1,15 @@
 <script>
-import UpperPanel from "../UpperPanel/UpperPanel.vue";
-import RandomCharacter from "../RandomCharacter/RandomCharacter.vue";
-import CharacterList from "../CharacterList/CharacterList.vue";
-import CharacterInfo from "../CharacterInfo/CharacterInfo.vue";
-import SearchForm from "../SearchForm/SearchForm.vue";
-import ComicsList from "../ComicsList/ComicsList.vue";
-import "./app.scss";
 import "../../resources/fonts/fonts.scss";
+import "./app.scss";
+import UpperPanel from "../UpperPanel/UpperPanel.vue";
+import CharacterListContainer from "../CharacterListContainer/CharacterListContainer.vue";
+import ComicsList from "../ComicsList/ComicsList.vue";
 
 export default {
   components: {
     UpperPanel,
-    RandomCharacter,
-    CharacterList,
-    CharacterInfo,
-    SearchForm,
+    CharacterListContainer,
     ComicsList,
-  },
-  data() {
-    return {
-      chosenCharacter: {},
-      foundHero: {},
-    };
-  },
-  methods: {
-    choseCharacter: function (char) {
-      this.chosenCharacter = char;
-    },
-    toSaveTheFoundHero: function (char) {
-      this.foundHero = char;
-    },
   },
 };
 </script>
@@ -37,14 +17,7 @@ export default {
 <template>
   <div class="container">
     <UpperPanel />
-    <!-- <RandomCharacter />
-    <div class="mainWraper">
-      <CharacterList @choseCharacter="choseCharacter" />
-      <div class="subWraper">
-        <CharacterInfo :chosenCharacter="chosenCharacter" />
-        <SearchForm :toSaveTheFoundHero="toSaveTheFoundHero" />
-      </div>
-    </div> -->
-    <ComicsList />
+    <CharacterListContainer />
+    <!-- <ComicsList /> -->
   </div>
 </template>
