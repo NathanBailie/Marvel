@@ -1,13 +1,11 @@
 <script>
 import "../../resources/fonts/fonts.scss";
 import "./app.scss";
-import UpperPanel from "../UpperPanel/UpperPanel.vue";
 import CharacterListContainer from "../CharacterListContainer/CharacterListContainer.vue";
 import ComicsList from "../ComicsList/ComicsList.vue";
 
 export default {
   components: {
-    UpperPanel,
     CharacterListContainer,
     ComicsList,
   },
@@ -16,8 +14,6 @@ export default {
 
 <template>
   <div class="container">
-    <UpperPanel />
-    <CharacterListContainer />
-    <!-- <ComicsList /> -->
+    <router-view></router-view>
   </div>
 </template>

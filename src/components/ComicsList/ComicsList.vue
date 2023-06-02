@@ -2,12 +2,14 @@
 import "../../buttons/buttons.scss";
 import "./comicsList.scss";
 import MarvelService from "../MarvelService/MarvelService";
+import UpperPanel from "../UpperPanel/UpperPanel.vue";
 import Spinner from "../Spinner/Spinner.vue";
 import Error from "../Error/Error.vue";
 
 export default {
   name: "ComicsList",
   components: {
+    UpperPanel,
     Spinner,
     Error,
   },
@@ -64,6 +66,8 @@ export default {
 </script>
 
 <template>
+  <UpperPanel />
+
   <div class="comicsList">
     <div class="comicsList__announcement">
       <img src="../../resources/icons/avengers.png" alt="avengers" />

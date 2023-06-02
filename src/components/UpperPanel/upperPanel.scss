@@ -12,13 +12,27 @@
     font-weight: 700;
   }
 
-  &__pages {
-    font-size: 24px;
-    line-height: 28px;
-    font-weight: 700;
-  }
-}
+  &__links {
+    display: flex;
+    flex-direction: row;
 
-.marked {
-  color: #9F0013;
+    h2 {
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: 700;
+
+      a {
+        color: black;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline 2px;
+        }
+
+        &.marked {
+          color: #9F0013;
+        }
+      }
+    }
+  }
 }
