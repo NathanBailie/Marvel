@@ -5,6 +5,7 @@ import MarvelService from "../MarvelService/MarvelService";
 import UpperPanel from "../UpperPanel/UpperPanel.vue";
 import Spinner from "../Spinner/Spinner.vue";
 import Error from "../Error/Error.vue";
+import AnnouncementLine from "../AnnouncementLine/AnnouncementLine.vue";
 
 export default {
   name: "ComicsList",
@@ -12,6 +13,7 @@ export default {
     UpperPanel,
     Spinner,
     Error,
+    AnnouncementLine,
   },
 
   data() {
@@ -67,14 +69,9 @@ export default {
 
 <template>
   <UpperPanel />
+  <AnnouncementLine />
 
   <div class="comicsList">
-    <div class="comicsList__announcement">
-      <img src="../../resources/icons/avengers.png" alt="avengers" />
-      <h1>New comics every week! Stay tuned!</h1>
-      <img src="../../resources/icons/logo.png" alt="logo" />
-    </div>
-
     <div class="comicsList__comics" v-if="showContent">
       <div
         v-for="comicBook in comics"

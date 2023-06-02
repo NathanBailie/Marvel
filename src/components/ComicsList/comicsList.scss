@@ -5,36 +5,6 @@
     margin: 0 auto;
   }
 
-  &__announcement {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 25px 0 45px;
-    margin-bottom: 50px;
-    background: #232222;
-
-    h1 {
-      width: 235px;
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 28px;
-      color: #FFFFFF;
-      margin: 0;
-    }
-
-    img {
-      height: 100px;
-
-      &:nth-child(1) {
-        margin-right: 85px;
-      }
-
-      &:nth-child(3) {
-        margin: 0 0 0 auto;
-      }
-    }
-  }
-
   &__comics {
     display: grid;
     grid-template: repeat(auto-fill, minmax(370px, auto)) / repeat(auto-fill, 225px);
