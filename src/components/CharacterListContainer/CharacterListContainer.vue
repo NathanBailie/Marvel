@@ -27,7 +27,7 @@ export default {
       <CharacterList />
       <div class="characterListContainer__subWraper">
         <CharacterInfo />
-        <SearchForm :toSaveTheFoundHero="toSaveTheFoundHero" />
+        <SearchForm />
       </div>
     </div>
   </div>

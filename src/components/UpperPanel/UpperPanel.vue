@@ -6,7 +6,7 @@ export default {
   components: {},
   data() {
     return {
-      activeLink: this.$router.options.history.location.slice(1),
+      activeLink: "chararters",
     };
   },
   methods: {

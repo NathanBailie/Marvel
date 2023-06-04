@@ -6,6 +6,7 @@ import UpperPanel from "../UpperPanel/UpperPanel.vue";
 import Spinner from "../Spinner/Spinner.vue";
 import Error from "../Error/Error.vue";
 import AnnouncementLine from "../AnnouncementLine/AnnouncementLine.vue";
+import store from "../../store";
 
 export default {
   name: "ComicsList",
@@ -60,6 +61,9 @@ export default {
           this.additionalLoading = false;
         });
     },
+    toSaveTheComicBook: function (res) {
+      store.commit("toSaveTheChosenComicBook", res);
+    },
   },
   mounted() {
     this.getComics();
@@ -77,9 +81,13 @@ export default {
         v-for="comicBook in comics"
         :key="comicBook.id"
         class="comicsList__comicBook"
+        @click="toSaveTheComicBook(comicBook)"
       >
         <img :src="comicBook.image" alt="comicBook" />
-        <h2>{{ comicBook.title }}</h2>
+        <a href="#/comic" />
+        <h2>
+          {{ comicBook.title }}
+        </h2>
       </div>
     </div>
 

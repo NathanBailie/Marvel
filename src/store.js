@@ -5,6 +5,7 @@ const store = createStore({
     return {
       chosenCharacter: {},
       foundHero: {},
+      chosenComicBook: {}
     }
   },
   mutations: {
@@ -13,6 +14,9 @@ const store = createStore({
     },
     toSaveTheFoundHero(state, payload) {
       state.foundHero = payload;
+    },
+    toSaveTheChosenComicBook(state, payload) {
+      state.chosenComicBook = payload;
     },
   }
 })

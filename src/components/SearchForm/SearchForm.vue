@@ -6,9 +6,6 @@ import store from "../../store";
 
 export default {
   name: "SearchForm",
-  props: {
-    toSaveTheFoundHero: Function,
-  },
 
   data() {
     return {
@@ -76,7 +73,10 @@ export default {
       <p class="searchForm__wrong" v-if="wrong">
         The character was not found. Check the name and try again
       </p>
-      <button class="buttons gray" v-if="responseReceived">to page</button>
+      <button class="buttons gray" v-if="responseReceived">
+        to page
+        <a href="#/hero"></a>
+      </button>
     </div>
   </div>
 </template>

@@ -18,6 +18,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     padding-bottom: 10px;
+    position: relative;
 
     &:hover {
       transform: scale(1.02);
@@ -28,6 +29,14 @@
       width: 225px;
       height: 345px;
       margin-bottom: 10px;
+    }
+
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 225px;
+      height: 345px;
     }
 
     h2 {
