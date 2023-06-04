@@ -4,10 +4,10 @@ import "./characterList.scss";
 import MarvelService from "../MarvelService/MarvelService";
 import Spinner from "../Spinner/Spinner.vue";
 import Error from "../Error/Error.vue";
+import store from "../../store";
 
 export default {
   name: "CharacterList",
-  emits: ["choseCharacter"],
   data() {
     return {
       characters: [],
@@ -59,7 +59,7 @@ export default {
         }
       });
 
-      this.$emit("choseCharacter", activeChar);
+      store.commit("choseCharacter", activeChar);
     },
     toLoadAdditionalCharacters: function () {
       this.offset += this.characters.length;

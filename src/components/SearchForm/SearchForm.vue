@@ -2,10 +2,13 @@
 import "../../buttons/buttons.scss";
 import "./searchForm.scss";
 import MarvelService from "../MarvelService/MarvelService";
+import store from "../../store";
 
 export default {
   name: "SearchForm",
-  emits: ["toSaveTheFoundHero"],
+  props: {
+    toSaveTheFoundHero: Function,
+  },
 
   data() {
     return {
@@ -31,10 +34,12 @@ export default {
         this.emptyField = true;
         return;
       }
+
       new MarvelService()
         .getCharacterByName(this.heroName)
         .then((res) => {
-          this.$emit("toSaveTheFoundHero", res);
+          store.commit("toSaveTheFoundHero", res);
+
           this.loading = false;
           this.responseReceived = true;
           this.correct = true;

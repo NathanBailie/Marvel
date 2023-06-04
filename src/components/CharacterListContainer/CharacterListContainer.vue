@@ -15,20 +15,6 @@ export default {
     CharacterInfo,
     SearchForm,
   },
-  data() {
-    return {
-      chosenCharacter: {},
-      foundHero: {},
-    };
-  },
-  methods: {
-    choseCharacter: function (char) {
-      this.chosenCharacter = char;
-    },
-    toSaveTheFoundHero: function (char) {
-      this.foundHero = char;
-    },
-  },
 };
 </script>
 
@@ -38,9 +24,9 @@ export default {
   <div class="characterListContainer">
     <RandomCharacter />
     <div class="characterListContainer__mainWraper">
-      <CharacterList @choseCharacter="choseCharacter" />
+      <CharacterList />
       <div class="characterListContainer__subWraper">
-        <CharacterInfo :chosenCharacter="chosenCharacter" />
+        <CharacterInfo />
         <SearchForm :toSaveTheFoundHero="toSaveTheFoundHero" />
       </div>
     </div>
