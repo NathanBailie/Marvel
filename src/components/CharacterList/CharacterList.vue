@@ -42,6 +42,7 @@ export default {
           this.startError = true;
         });
     },
+
     toggleActive: function (id) {
       this.characters.map((elem) => {
         if (elem.id !== id) {
@@ -61,6 +62,7 @@ export default {
 
       store.commit("choseCharacter", activeChar);
     },
+
     toLoadAdditionalCharacters: function () {
       this.offset += this.characters.length;
       this.additionalLoading = true;
@@ -79,6 +81,7 @@ export default {
     },
   },
   mounted() {
+    console.log(store.state.characters);
     this.getCharacters();
   },
 };
