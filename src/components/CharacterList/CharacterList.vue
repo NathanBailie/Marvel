@@ -81,7 +81,6 @@ export default {
     },
   },
   mounted() {
-    console.log(store.state.characters);
     this.getCharacters();
   },
 };

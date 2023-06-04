@@ -30,5 +30,6 @@ export default {
         <SearchForm />
       </div>
     </div>
+    <img class="vision" src="../../resources/img/bg/vision.png" alt="" />
   </div>
 </template>

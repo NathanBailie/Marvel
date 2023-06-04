@@ -6,7 +6,7 @@ export default {
   components: {},
   data() {
     return {
-      activeLink: "chararters",
+      activeLink: "",
     };
   },
   methods: {
@@ -18,7 +18,12 @@ export default {
     },
   },
   mounted() {
-    this.activeLink = this.$router.options.history.location.slice(1);
+    const path = this.$router.options.history.location.slice(1);
+    if (path === "") {
+      this.activeLink = "characters";
+      return;
+    }
+    this.activeLink = path;
   },
 };
 </script>
