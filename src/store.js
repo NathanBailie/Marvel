@@ -6,21 +6,48 @@ const store = createStore({
       chosenCharacter: {},
       foundHero: {},
       chosenComicBook: {},
+      characters: [],
+      charactersOffset: 0,
       comics: [],
       comicsOffset: 0,
     }
   },
   mutations: {
-    choseCharacter(state, payload) {
-      state.chosenCharacter = payload;
-    },
     toSaveTheFoundHero(state, payload) {
       state.foundHero = payload;
     },
     toSaveTheChosenComicBook(state, payload) {
       state.chosenComicBook = payload;
     },
-    toDownLoadComics(state, payload) {
+    toDownloadCharacters(state, payload) {
+      state.characters = payload;
+    },
+    toAddAnActiveParameter(state) {
+      state.characters.map((elem) => (elem.isActive = false))
+    },
+    toMakeCharactersOffset(state) {
+      state.charactersOffset += state.characters.length;
+    },
+    toPushAdditionalCharacters(state, payload) {
+      state.characters = [...state.characters, ...payload];
+    },
+    toToggleAnActiveCharacter(state, payload) {
+      state.characters.map((elem) => {
+        if (elem.id !== payload) {
+          elem.isActive = false;
+        } else {
+          elem.isActive = !elem.isActive;
+        }
+      });
+
+      state.characters.forEach((elem) => {
+        if (elem.isActive) {
+          state.chosenCharacter = elem;
+        }
+      });
+
+    },
+    toDownloadComics(state, payload) {
       state.comics = payload;
     },
     toMakeComicsOffset(state) {

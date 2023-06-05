@@ -10,8 +10,6 @@ export default {
   name: "CharacterList",
   data() {
     return {
-      characters: [],
-      offset: 0,
       startLoading: true,
       startError: false,
       showContent: false,
@@ -25,13 +23,12 @@ export default {
   },
   methods: {
     getCharacters() {
-      this.offset += this.characters.length;
-
       new MarvelService()
-        .getAllCharacters(this.offset)
+        .getAllCharacters(store.state.charactersOffset)
         .then((res) => {
-          this.characters = res;
-          this.characters.map((elem) => (elem.isActive = false));
+          store.commit("toDownloadCharacters", res);
+          store.commit("toAddAnActiveParameter");
+          store.commit("toMakeComicsOffset");
           this.startLoading = false;
           this.startError = false;
           this.showContent = true;
@@ -43,34 +40,14 @@ export default {
         });
     },
 
-    toggleActive: function (id) {
-      this.characters.map((elem) => {
-        if (elem.id !== id) {
-          elem.isActive = false;
-        } else {
-          elem.isActive = !elem.isActive;
-        }
-      });
-
-      let activeChar = {};
-
-      this.characters.forEach((elem) => {
-        if (elem.isActive) {
-          activeChar = elem;
-        }
-      });
-
-      store.commit("choseCharacter", activeChar);
-    },
-
     toLoadAdditionalCharacters: function () {
-      this.offset += this.characters.length;
       this.additionalLoading = true;
 
       new MarvelService()
-        .getAllCharacters(this.offset)
+        .getAllCharacters(store.state.charactersOffset)
         .then((res) => {
-          this.characters.push(...res);
+          store.commit("toPushAdditionalCharacters", res);
+          store.commit("toMakeComicsOffset");
           this.additionalLoading = false;
           this.additionalError = false;
         })
@@ -81,7 +58,13 @@ export default {
     },
   },
   mounted() {
-    // this.getCharacters();
+    if (store.state.characters.length === 0) {
+      this.getCharacters();
+    } else {
+      this.startLoading = false;
+      this.startError = false;
+      this.showContent = true;
+    }
   },
 };
 </script>
@@ -90,14 +73,14 @@ export default {
   <div class="characterListWraper">
     <div class="characterList" v-if="showContent">
       <div
-        v-for="char in characters"
+        v-for="char in $store.state.characters"
         :key="char.id"
         :class="
           char.isActive
             ? 'characterList__char characterList__char_active'
             : 'characterList__char'
         "
-        @click="toggleActive(char.id)"
+        @click="$store.commit('toToggleAnActiveCharacter', char.id)"
       >
         <img :src="char.image" alt="character" />
         <h2>{{ char.name }}</h2>
@@ -108,7 +91,7 @@ export default {
     <Error v-if="startError" />
 
     <button
-      v-if="characters.length < 1562"
+      v-if="$store.state.characters.length < 1562"
       class="buttons red"
       @click="toLoadAdditionalCharacters"
     >

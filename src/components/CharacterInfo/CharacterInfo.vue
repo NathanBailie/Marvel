@@ -7,10 +7,6 @@ import store from "../../store";
 export default {
   name: "CharacterInfo",
   components: { Skeleton },
-  data() {
-    return {};
-  },
-  methods: {},
 };
 </script>
 

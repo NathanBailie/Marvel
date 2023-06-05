@@ -31,8 +31,8 @@ export default {
       new MarvelService()
         .getAllComics(store.state.offset)
         .then((res) => {
-          store.commit("toDownLoadComics", res);
-          store.commit("toMakeComicsOffset");
+          store.commit("toDownloadComics", res);
+          store.commit("toMakeCharactersOffset");
           this.startLoading = false;
           this.startError = false;
           this.showContent = true;
@@ -67,7 +67,6 @@ export default {
     if (store.state.comics.length === 0) {
       this.getComics();
     } else {
-      this.comics = store.state.comics;
       this.startLoading = false;
       this.startError = false;
       this.showContent = true;
