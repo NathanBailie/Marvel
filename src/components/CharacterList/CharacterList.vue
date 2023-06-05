@@ -47,7 +47,7 @@ export default {
         .getAllCharacters(store.state.charactersOffset)
         .then((res) => {
           store.commit("toPushAdditionalCharacters", res);
-          store.commit("toMakeComicsOffset");
+          store.commit("toMakeCharactersOffset");
           this.additionalLoading = false;
           this.additionalError = false;
         })
