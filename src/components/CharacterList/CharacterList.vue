@@ -81,7 +81,7 @@ export default {
     },
   },
   mounted() {
-    this.getCharacters();
+    // this.getCharacters();
   },
 };
 </script>

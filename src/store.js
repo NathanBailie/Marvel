@@ -5,7 +5,9 @@ const store = createStore({
     return {
       chosenCharacter: {},
       foundHero: {},
-      chosenComicBook: {}
+      chosenComicBook: {},
+      comics: [],
+      comicsOffset: 0,
     }
   },
   mutations: {
@@ -18,6 +20,15 @@ const store = createStore({
     toSaveTheChosenComicBook(state, payload) {
       state.chosenComicBook = payload;
     },
+    toDownLoadComics(state, payload) {
+      state.comics = payload;
+    },
+    toMakeComicsOffset(state) {
+      state.comicsOffset += state.comics.length;
+    },
+    toPushAdditionalComics(state, payload) {
+      state.comics = [...state.comics, ...payload];
+    }
   }
 })
 

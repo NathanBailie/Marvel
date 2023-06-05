@@ -19,8 +19,6 @@ export default {
 
   data() {
     return {
-      comics: [],
-      offset: 0,
       startLoading: true,
       startError: false,
       showContent: false,
@@ -30,11 +28,11 @@ export default {
   },
   methods: {
     getComics() {
-      this.offset += this.comics.length;
       new MarvelService()
-        .getAllComics(this.offset)
+        .getAllComics(store.state.offset)
         .then((res) => {
-          this.comics = res;
+          store.commit("toDownLoadComics", res);
+          store.commit("toMakeComicsOffset");
           this.startLoading = false;
           this.startError = false;
           this.showContent = true;
@@ -46,13 +44,13 @@ export default {
         });
     },
     toLoadAdditionalComics: function () {
-      this.offset += this.comics.length;
       this.additionalLoading = true;
 
       new MarvelService()
-        .getAllComics(this.offset)
+        .getAllComics(store.state.comicsOffset)
         .then((res) => {
-          this.comics.push(...res);
+          store.commit("toPushAdditionalComics", res);
+          store.commit("toMakeComicsOffset");
           this.additionalLoading = false;
           this.additionalError = false;
         })
@@ -66,7 +64,14 @@ export default {
     },
   },
   mounted() {
-    this.getComics();
+    if (store.state.comics.length === 0) {
+      this.getComics();
+    } else {
+      this.comics = store.state.comics;
+      this.startLoading = false;
+      this.startError = false;
+      this.showContent = true;
+    }
   },
 };
 </script>
@@ -78,7 +83,7 @@ export default {
   <div class="comicsList">
     <div class="comicsList__comics" v-if="showContent">
       <div
-        v-for="comicBook in comics"
+        v-for="comicBook in $store.state.comics"
         :key="comicBook.id"
         class="comicsList__comicBook"
         @click="toSaveTheComicBook(comicBook)"
@@ -95,9 +100,9 @@ export default {
     <Error v-if="startError" />
 
     <button
-      v-if="comics.length < 55763"
       class="buttons red"
       @click="toLoadAdditionalComics"
+      v-if="$store.state.comics.length < 55763"
     >
       {{ this.additionalLoading ? "Loading..." : null }}
       {{ this.additionalError ? "Reload" : null }}
