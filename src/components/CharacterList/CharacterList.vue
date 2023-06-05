@@ -28,7 +28,7 @@ export default {
         .then((res) => {
           store.commit("toDownloadCharacters", res);
           store.commit("toAddAnActiveParameter");
-          store.commit("toMakeComicsOffset");
+          store.commit("toMakeCharactersOffset");
           this.startLoading = false;
           this.startError = false;
           this.showContent = true;

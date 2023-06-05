@@ -32,7 +32,7 @@ export default {
         .getAllComics(store.state.offset)
         .then((res) => {
           store.commit("toDownloadComics", res);
-          store.commit("toMakeCharactersOffset");
+          store.commit("toMakeComicsOffset");
           this.startLoading = false;
           this.startError = false;
           this.showContent = true;
