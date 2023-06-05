@@ -1,7 +1,7 @@
 <script>
 import "../../buttons/buttons.scss";
 import "./searchForm.scss";
-import MarvelService from "../MarvelService/MarvelService";
+import MarvelService from "../../services/MarvelService";
 import store from "../../store";
 
 export default {

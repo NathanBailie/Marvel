@@ -1,7 +1,7 @@
 <script>
 import "../../buttons/buttons.scss";
 import "./characterList.scss";
-import MarvelService from "../MarvelService/MarvelService";
+import MarvelService from "../../services/MarvelService";
 import Spinner from "../Spinner/Spinner.vue";
 import Error from "../Error/Error.vue";
 import store from "../../store";

@@ -1,7 +1,7 @@
 <script>
 import "../../buttons/buttons.scss";
 import "./comicsList.scss";
-import MarvelService from "../MarvelService/MarvelService";
+import MarvelService from "../../services/MarvelService";
 import UpperPanel from "../UpperPanel/UpperPanel.vue";
 import Spinner from "../Spinner/Spinner.vue";
 import Error from "../Error/Error.vue";
